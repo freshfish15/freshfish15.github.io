@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shangrong's Academic Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#bio">Shangrong</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bio">Bio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#research">Research</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="bio" class="hero-section">
+        <div class="container content-wrapper">
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-lg-4 text-center">
+                    <img src="images/self1.jpg" class="img-fluid profile-pic" alt="Your Name">
+                    <h1 class="mt-3">Shangrong Wu (John)</h1>
+                    <p>Master of Computing</p>
+                    <p>School of Computing, NUS</p>
+                    <div class="social-icons">
+                        <a href="mailto:johnwu8815@outlook.com" target="_blank"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/shangrongwu/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/freshfish15" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fas fa-graduation-cap"></i></a>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div class="col-lg-8">
+                    <div class="bio">
+                        <p>
+                            I am a master of Computing student at National University of Singapore. My current research focus on optimizing Human-AI collaboration and information retrieval, and my interests revolve around Chain-of-Thought of Multimodal Large Language Model (MLLM), Interactive Information Retrieval, and HCI. I also have developed multiple web applications.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-cv">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <h3>Interests</h3>
+                            <ul>
+                                <li>Human-AI Collaboration/Interaction</li>
+                                <li>Information Retrieval</li>
+                                <li>Application of Multimodal Model</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Education</h3>
+                            <div class="education-item">
+                                <p><i class="fas fa-graduation-cap"></i> <strong>Master of Computing</strong></p>
+                                <p>National University of Singapore</p>
+                            </div>
+                            <div class="education-item">
+                                <p><i class="fas fa-graduation-cap"></i> <strong>BSc Enterprise Engineering with Management</strong></p>
+                                <p>The Hong Kong Polytechnic University</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="research" class="container mt-5 content-section">
+        <h2>Research</h2>
+        <hr>
+        <h3>Pre-prints</h3>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <a class="image-link">
+                        <br>
+                        <img src="images/rerank_drawing.jpg" class="img-fluid rounded-start popup-image" alt="Framework graph for CHAIN-OF-THOUGHT RE-RANKING">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Chain-of-Thought Re-ranking: Enhancing VLM-Based Image Retreival With MLLMs</h5>
+                        <p class="card-text">S. WU (First Author), Y. Zhou, Y. Chen, F. Zhang, and P. Mok </p>
+                        <p class="card-text">We propose a training-
+free re-ranking framework using Multimodal Large Language Models (MLLMs) to refine VLM results through sophisticated reasoning.
+Our Chain-of-Thought prompting strategy guides MLLMs through
+three steps: (1) deconstructing queries into semantic elements, (2)
+evaluating candidate images with detailed justification, and (3) performing fine-grained list-wise re-ranking through comparative analysis.</p>
+                        <a href="papers/placeholder_paper.pdf" class="btn btn-primary" target="_blank">Read Paper (PDF)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h3>Ongoing</h3>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <a class="image-link">
+                        <img src="images/human-AI1.png" class="img-fluid rounded-start popup-image" alt="Framework graph for CHAIN-OF-THOUGHT RE-RANKING">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Human-AI Collaboration in Image Classification</h5>
+                        <p class="card-text"></p>
+                        <p class="card-text">
+                            This project aims to investigate the relationship between human’s delegation skills and willingness to delegate tasks to 
+                            AI in image classification problem. Our goal is to identify the solutions to optimize human-AI collaboration performance.
+                        </p>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="projects" class="container mt-5 content-section">
+        <h2>Projects</h2>
+        <hr>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="row g-0">
+                        <div class="col-6 pe-1">
+                            <a class="image-link">
+                                <img src="images/aob1.png" class="img-fluid rounded-start popup-image" alt="Uniform Project Image 1">
+                            </a>
+                        </div>
+                        <div class="col-6 ps-1">
+                            <a class="image-link">
+                                <img src="images/aob2.png" class="img-fluid popup-image" alt="Uniform Project Image 2">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Uniform Project</h5>
+                        <p class="card-text">AOB uniform app is combining AI technology to bring innovation in traditional uniform measurement in Hong Kong. In the traditional uniform buying process, parents and children need to either visit the uniform company or wait for the company to do the body measurement in the school. By using our app, parents and children can take the body measurement and receive the size suggestion in purchasing a uniform at any time and anywhere.</p>
+                        <p class="card-text">My role:</p>
+                        <p class="card-text">(1) Front-end Development with Angular (TypeScript)<br> (2) Back-end Development with FastAPI (Python) <br>(3) Linux server mantenance <br>(4) Database mantenance</p>
+                        <div class="mt-3">
+                            <a href="https://apps.apple.com/us/app/aob-uniform/id6446336071" target="_blank" style="text-decoration:none">
+                                <img src="images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="" style="height: 50px; text-decoration:none">
+                            </a>
+                            &nbsp;
+                            <a href="https://play.google.com/store/apps/details?id=cafilab.uniform.client.com" target="_blank" >
+                                <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height: 50px; text-decoration:none" >
+                            </a>
+                            <br>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="row g-0">
+                        <div class="col-6 pe-1">
+                            <a class="image-link">
+                                <img src="images/jersey1.png" class="img-fluid rounded-start popup-image" alt="Uniform Project Image 1">
+                            </a>
+                        </div>
+                        <div class="col-6 ps-1">
+                            <a class="image-link">
+                                <img src="images/jersey2.png" class="img-fluid popup-image" alt="Uniform Project Image 2">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Jersey Project</h5>
+                        <p class="card-text">An jersey design App that allow users design their jersey with AI-generated prints, custom Logos, and text.</p>
+                        <p class="card-text">My role:</p>
+                        <p class="card-text">(1) Front-end Development with Angular (TypeScript)<br> (2) Back-end Development with FastAPI (Python) <br>(3) Linux server mantenance <br>(4) Database mantenance</p>
+                        <div class="mt-3">
+                            <a href="https://apps.apple.com/us/app/jersey-ai/id6733240420" target="_blank" style="text-decoration:none">
+                                <img src="images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="" style="height: 50px; text-decoration:none">
+                            </a>
+                            &nbsp;
+                            <!-- <a href="https://play.google.com/store/apps/details?id=cafilab.uniform.client.com" target="_blank" >
+                                <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height: 50px; text-decoration:none" >
+                            </a>
+                            <br> -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <a class="image-link">
+                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded-start popup-image" alt="Project 2">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Project 2</h5>
+                        <p class="card-text">A brief description of your second project.</p>
+                        <div class="mt-3">
+                            <a href="#">
+                                <img src="images/google-play-badge.png" alt="Get it on Google Play" style="height: 50px;">
+                            </a>
+                            <a href="#">
+                                <img src="images/app-store-badge.png" alt="Download on the App Store" style="height: 50px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <a class="image-link">
+                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded-start popup-image" alt="Project 3">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Project 3</h5>
+                        <p class="card-text">A brief description of your third project.</p>
+                        <div class="mt-3">
+                            <a href="#">
+                                <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height: 50px;">
+                            </a>
+                            <a href="#">
+                                <img src="images/app-store-badge.png" alt="Download on the App Store" style="height: 50px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="imageModal" class="modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
