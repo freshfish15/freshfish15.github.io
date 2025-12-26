@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Data Generator (Temp)</title>
+    <title>Data Generator (Temp)</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -19,6 +19,13 @@
             text-align: center;
             margin-bottom: 30px;
         }
+        .mode-selection {
+            margin-bottom: 20px;
+        }
+        .mode-selection label {
+            font-size: 18px;
+            margin: 0 20px;
+        }
         input[type="number"] {
             padding: 10px;
             font-size: 18px;
@@ -31,6 +38,7 @@
             color: white;
             border: none;
             cursor: pointer;
+            margin-top: 20px;
         }
         button:hover {
             background: #0056b3;
@@ -50,7 +58,7 @@
             background: #e0e0e0;
             font-weight: bold;
         }
-        /* Alternating row colors for the 20 item rows */
+        /* Alternating row colors for item rows */
         tbody tr:nth-child(odd) {
             background-color: #f2f2f2;
         }
@@ -64,7 +72,7 @@
         .total-row td {
             font-weight: bold;
             font-size: 18px;
-            background: #e0e0e0 !important; /* Override alternating colors */
+            background: #e0e0e0 !important;
         }
         #result {
             display: none;
@@ -77,16 +85,23 @@
         }
     </style>
 </head>
-<body>
+<body onload="updateMode()">
     <h1>Data Generator</h1>
+    
     <div class="input-area">
-        <p>Enter the desired total score (20–100):</p>
-        <input type="number" id="desiredTotal" min="20" max="100" value="60">
-        <button onclick="generateForm()">Generate Fake Data</button>
+        <div class="mode-selection">
+            <label><input type="radio" name="mode" value="20" checked onchange="updateMode()"> 20 Items</label>
+            <label><input type="radio" name="mode" value="14" onchange="updateMode()"> 14 Items</label>
+        </div>
+        
+        <p>Enter the desired total score:</p>
+        <input type="number" id="desiredTotal" value="60">
+        <br>
+        <button onclick="generateForm()">Generate Data</button>
     </div>
 
     <div id="result">
-        <h2>Filled Questionnaire (Total = <span id="actualTotal"></span>)</h2>
+        <h2>Filled Questionnaire (<span id="itemsCount"></span> Items, Total = <span id="actualTotal"></span>)</h2>
         <table>
             <thead>
                 <tr>
@@ -104,49 +119,71 @@
         </table>
     </div>
 
-    <p class="note">This is a temporary tool. You can print this page or screenshot it to use the fake data.</p>
+    <p class="note">This is a temporary tool for generating data for 20-item or 14-item questionnaires.</p>
 
     <script>
+        function updateMode() {
+            const selectedMode = document.querySelector('input[name="mode"]:checked').value;
+            const numItems = parseInt(selectedMode);
+            const inputEl = document.getElementById('desiredTotal');
+            const minSum = numItems;
+            const maxSum = numItems * 5;
+            const midValue = Math.round((minSum + maxSum) / 2);
+
+            inputEl.min = minSum;
+            inputEl.max = maxSum;
+            inputEl.value = midValue;
+
+            // Hide previous result when switching mode
+            document.getElementById('result').style.display = 'none';
+        }
+
         function generateForm() {
+            const selectedMode = document.querySelector('input[name="mode"]:checked').value;
+            const numItems = parseInt(selectedMode);
+            const minSum = numItems;
+            const maxSum = numItems * 5;
+
             const input = parseInt(document.getElementById('desiredTotal').value);
-            if (isNaN(input) || input < 20 || input > 100) {
-                alert('Please enter a valid total score between 20 and 100.');
+            if (isNaN(input) || input < minSum || input > maxSum) {
+                alert(`Please enter a valid total score between ${minSum} and ${maxSum}.`);
                 return;
             }
 
-            const scores = generateExactSumScores(input);
-            let html = '';
+            const scores = generateExactSumScores(input, numItems);
 
-            // Generate 20 item rows
-            for (let i = 0; i < 20; i++) {
+            let html = '';
+            // Generate item rows
+            for (let i = 0; i < numItems; i++) {
                 html += `<tr>
                     <td>${i + 1}</td>`;
                 for (let option = 1; option <= 5; option++) {
-                    const circle = (scores[i] === option) ? '&#9679;' : ''; // Only ● for selected, nothing for others
+                    const circle = (scores[i] === option) ? '&#9679;' : ''; // Only ● for selected
                     html += `<td class="circle">${circle}</td>`;
                 }
                 html += `</tr>`;
             }
 
-            // Add the 21st row for Total
+            // Total row
             html += `<tr class="total-row">
                 <td><strong>Total</strong></td>
                 <td colspan="5"><strong>${input}</strong></td>
             </tr>`;
 
             document.getElementById('tableBody').innerHTML = html;
+            document.getElementById('itemsCount').innerText = numItems;
             document.getElementById('actualTotal').innerText = input;
             document.getElementById('result').style.display = 'block';
         }
 
-        function generateExactSumScores(targetSum) {
-            // Start with all 1s (minimum sum = 20)
-            let scores = new Array(20).fill(1);
-            let currentSum = 20;
+        function generateExactSumScores(targetSum, numItems) {
+            // Start with all 1s
+            let scores = new Array(numItems).fill(1);
+            let currentSum = numItems;
 
-            // Randomly increment until we reach the exact target
+            // Randomly increment until exact target
             while (currentSum < targetSum) {
-                const idx = Math.floor(Math.random() * 20);
+                const idx = Math.floor(Math.random() * numItems);
                 if (scores[idx] < 5) {
                     scores[idx]++;
                     currentSum++;
