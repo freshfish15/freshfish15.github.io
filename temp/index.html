@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Data Generator (Temp)</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .input-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #e0e0e0;
+            font-weight: bold;
+        }
+        /* Alternating row colors for the 20 item rows */
+        tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+        .circle {
+            font-size: 32px;
+            line-height: 1;
+        }
+        .total-row td {
+            font-weight: bold;
+            font-size: 18px;
+            background: #e0e0e0 !important; /* Override alternating colors */
+        }
+        #result {
+            display: none;
+        }
+        .note {
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Generator</h1>
+    <div class="input-area">
+        <p>Enter the desired total score (20–100):</p>
+        <input type="number" id="desiredTotal" min="20" max="100" value="60">
+        <button onclick="generateForm()">Generate Fake Data</button>
+    </div>
+
+    <div id="result">
+        <h2>Filled Questionnaire (Total = <span id="actualTotal"></span>)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note">This is a temporary tool. You can print this page or screenshot it to use the fake data.</p>
+
+    <script>
+        function generateForm() {
+            const input = parseInt(document.getElementById('desiredTotal').value);
+            if (isNaN(input) || input < 20 || input > 100) {
+                alert('Please enter a valid total score between 20 and 100.');
+                return;
+            }
+
+            const scores = generateExactSumScores(input);
+            let html = '';
+
+            // Generate 20 item rows
+            for (let i = 0; i < 20; i++) {
+                html += `<tr>
+                    <td>${i + 1}</td>`;
+                for (let option = 1; option <= 5; option++) {
+                    const circle = (scores[i] === option) ? '&#9679;' : ''; // Only ● for selected, nothing for others
+                    html += `<td class="circle">${circle}</td>`;
+                }
+                html += `</tr>`;
+            }
+
+            // Add the 21st row for Total
+            html += `<tr class="total-row">
+                <td><strong>Total</strong></td>
+                <td colspan="5"><strong>${input}</strong></td>
+            </tr>`;
+
+            document.getElementById('tableBody').innerHTML = html;
+            document.getElementById('actualTotal').innerText = input;
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function generateExactSumScores(targetSum) {
+            // Start with all 1s (minimum sum = 20)
+            let scores = new Array(20).fill(1);
+            let currentSum = 20;
+
+            // Randomly increment until we reach the exact target
+            while (currentSum < targetSum) {
+                const idx = Math.floor(Math.random() * 20);
+                if (scores[idx] < 5) {
+                    scores[idx]++;
+                    currentSum++;
+                }
+            }
+            return scores;
+        }
+    </script>
+</body>
+</html>
